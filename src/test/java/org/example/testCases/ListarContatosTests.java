@@ -4,8 +4,6 @@ import io.restassured.RestAssured;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 
-import java.io.File;
-
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ListarContatosTests {
@@ -30,6 +28,6 @@ public class ListarContatosTests {
         when().
             get("/contacts").
         then().
-            statusCode(200).body(matchesJsonSchemaInClasspath("listar-contatos-schema.json"));
+            statusCode(200).body(matchesJsonSchemaInClasspath("listarContatosSchema.json"));
     }
 }
