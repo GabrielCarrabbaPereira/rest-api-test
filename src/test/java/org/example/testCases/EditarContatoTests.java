@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
 public class EditarContatoTests {
 
     private Contact contact;
@@ -33,6 +35,15 @@ public class EditarContatoTests {
 
         Contact contactResponse = new Contact(response.jsonPath());
         Assertions.assertEquals(contactResponse, contact);
+    }
+
+    @Test
+    public void contract(){
+        RestAssured.given().
+            when().
+                get("/contacts").
+            then().
+                statusCode(201).body(matchesJsonSchemaInClasspath("editarContatoSchema.json"));
     }
 
     @Test
